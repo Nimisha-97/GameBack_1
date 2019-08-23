@@ -2,17 +2,17 @@ package com.wipro.MongoGamification;
 
 public class Rules {
 	
-	private String metric;
+	private String mName;
 	private int reward;
-	public Rules(String metric, int reward) {
+	public Rules(String mName, int reward) {
 		super();
-		this.metric = metric;
+		this.mName = mName;
 		this.reward = reward;
 	}
-	public String getMetric() {
+	public String getmName() {
 		return metric;
 	}
-	public void setMetric(String metric) {
+	public void setmName(String mName) {
 		this.metric = metric;
 	}
 	public int getReward() {
