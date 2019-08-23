@@ -10,10 +10,10 @@ public class Rules {
 		this.reward = reward;
 	}
 	public String getmName() {
-		return metric;
+		return mName;
 	}
 	public void setmName(String mName) {
-		this.metric = metric;
+		this.mName = mName;
 	}
 	public int getReward() {
 		return reward;
