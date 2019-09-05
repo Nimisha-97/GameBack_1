@@ -1,0 +1,55 @@
+pipeline{
+    agent any
+    tools {
+        maven 'mymaven' 
+    }
+    stages{
+        stage('checkout')
+        {
+            steps{
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '89958fc6-2628-4c6b-af3e-d4c4c7921efb', url: 'https://github.com/Nimisha-97/GameBack_1.git']]])
+            }
+        }
+        stage ('build and install'){
+            steps{
+                sh "mvn clean install"
+            }
+        }
+      /* stage('Sonar') {
+            environment {
+                scannerHome=tool 'sonar scanner'
+            }
+            steps{
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'Hemant_Sonar_Cred', usernameVariable: 'USER', passwordVariable: 'PASS']]){
+                    sh "mvn $USER:$PASS -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
+                }
+            }
+        }
+        stage ('Uploading artifact to nexus'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'Hemant_Nexus_Cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh label: '', script: 'curl -u $USER:$PASS --upload-file target/MongoGamification-0.0.1-SNAPSHOT.war http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:8081/nexus/content/repositories/devopstraining/TW_Backend/MongoGamification-0.0.1-SNAPSHOT.war'
+                }
+            }
+        }
+        stage ('Deploy'){
+            steps{
+                
+                withCredentials([usernamePassword(credentialsId: 'ashish_tomcat', passwordVariable: 'pass', usernameVariable: 'userId')])
+                  {
+                 sh 'curl -u  $userId:$pass  http://ec2-52-66-245-186.ap-south-1.compute.amazonaws.com:8080/manager/text/undeploy?path=/TW_Backend_Dashboard'
+                 sh  'curl -u  $userId:$pass --upload-file target/MongoGamification-0.0.1-SNAPSHOT.war  http://ec2-52-66-245-186.ap-south-1.compute.amazonaws.com:8080/manager/text/deploy?config=file:/var/lib/tomcat8/MongoGamification-0.0.1-SNAPSHOT.war\\&path=/TW_Backend_Dashboard'
+                     echo "war"
+                 }
+    }
+        }*/
+    }
+    }
+    /*post {
+       success {
+           slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+       }
+       failure {
+           slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+       }
+    }*/
