@@ -12,7 +12,7 @@ pipeline{
         }
         stage ('build and install'){
             steps{
-                sh "mvn clean install"
+                sh "mvn clean install -Dmaven.test.skip=true"
             }
             post {
        always {
@@ -20,8 +20,6 @@ pipeline{
        }
    }
 }
-
-        }
       /* stage('Sonar') {
             environment {
                 scannerHome=tool 'sonar scanner'
