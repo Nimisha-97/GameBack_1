@@ -10,12 +10,12 @@ pipeline{
         stage('checkout')
         {
             steps{
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '89958fc6-2628-4c6b-af3e-d4c4c7921efb', url: 'https://github.com/Nimisha-97/GameBack_1.git']]])
+            checkout()
             }
         }
         stage ('build and install'){
             steps{
-                sh "mvn clean install -Dmaven.test.skip=true"
+               build()
             }
             post {
        always {
