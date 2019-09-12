@@ -1,27 +1,27 @@
 #!/usr/bin/env groovy
 
-@Library('pipeline-library-demo')_
+@Library('shared-library')_
 pipeline{
     agent any
     tools {
         maven 'mymaven' 
     }
     stages{
-        stage('checkout')
+       /* stage('checkout')
         {
             steps{
             checkout()
             }
-        }
+        }*/
         stage ('build and install'){
             steps{
                build()
             }
-            post {
+           /* post {
        always {
            jiraSendBuildInfo branch: '', site: 'nimishajira.atlassian.net'
        }
-   }
+   }*/
 }
       /* stage('Sonar') {
             environment {
