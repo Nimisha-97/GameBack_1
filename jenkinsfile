@@ -15,7 +15,7 @@ pipeline{
         }*/
         stage ('build and install'){
             steps{
-               build()
+               building()
             }
            /* post {
        always {
