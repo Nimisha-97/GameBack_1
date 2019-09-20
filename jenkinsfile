@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@Library('shared-library')_
+@Library('shared-lib')_
 pipeline{
     agent any
     tools {
